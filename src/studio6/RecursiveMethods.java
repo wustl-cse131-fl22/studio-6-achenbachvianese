@@ -1,5 +1,7 @@
 package studio6;
 
+import java.util.Arrays;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class RecursiveMethods {
@@ -13,9 +15,16 @@ public class RecursiveMethods {
 	 */
 	public static double geometricSum(int n) {
 		
-			// FIXME compute the geometric sum for the first n terms recursively
-			return 0;
+		double sum = 0; 
+		sum = Math.pow(0.5, n); 
+			
+		if(n == 0) {
+			return 1/2;
+		} 
 		
+		return sum + geometricSum(n - 1); 
+		
+			
 	}
 
 	/**
@@ -29,7 +38,14 @@ public class RecursiveMethods {
 	public static int gcd(int p, int q) {
 		
 			// FIXME compute the gcd of p and q using recursion
-			return 0;
+			if (p % q == 0) {
+				return q; 
+			}
+			
+			int temp = q; 
+			q = p % q; 
+			p = temp; 
+			return gcd(p, q); 
 		
 	}
 
@@ -42,11 +58,21 @@ public class RecursiveMethods {
 	 * @return an array with the same data as the input but it reverse order
 	 */
 	public static int[] toReversed(int[] array) {
-		
-			// FIXME create a helper method that can recursively reverse the given array
-			return new int[0];
-		
+		int index = array.length - 1; 
+		helper(array, index); 
+		return array; 
 	}
+	
+	private static void helper(int[] array, int index) {
+		if (index > 0) {
+			int temp = array[index - (array.length-2)];
+			array[index - array.length] = array[index]; 
+			array[index] = temp; 
+			helper(array, index - 1); 
+		}
+	}
+	
+
 
 	/**
 	 * @param xCenter                       x-coordinate of the center of the circle
@@ -61,6 +87,11 @@ public class RecursiveMethods {
 			double radiusMinimumDrawingThreshold) {
 		
 		// FIXME
+	}
+	
+	public static void main(String[] args) {
+		int array[] = {1, 2, 3, 4, 5, 6, 7, 8};
+		System.out.println(Arrays.toString(toReversed(array))); 
 	}
 
 }
