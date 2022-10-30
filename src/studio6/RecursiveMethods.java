@@ -1,5 +1,6 @@
 package studio6;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 import edu.princeton.cs.introcs.StdDraw;
@@ -86,12 +87,27 @@ public class RecursiveMethods {
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
 		
-		// FIXME
+		if (radius < radiusMinimumDrawingThreshold) {
+			return; 
+		}
+		
+		StdDraw.setPenColor(Color.BLACK);
+		StdDraw.circle(xCenter, yCenter, radius); 
+		circlesUponCircles(xCenter + radius, yCenter, radius/3, radiusMinimumDrawingThreshold);
+		circlesUponCircles(xCenter - radius, yCenter, radius/3, radiusMinimumDrawingThreshold);
+		circlesUponCircles(xCenter, yCenter + radius, radius/3, radiusMinimumDrawingThreshold);  
+		circlesUponCircles(xCenter, yCenter - radius, radius/3, radiusMinimumDrawingThreshold);  
+
+
+	}
+	
+	public static void circleHelper(double x, double y, double radius) {
+		StdDraw.setPenColor(Color.BLACK);  
+		
 	}
 	
 	public static void main(String[] args) {
-		int array[] = {1, 2, 3, 4, 5, 6, 7, 8};
-		System.out.println(Arrays.toString(toReversed(array))); 
+
 	}
 
 }
